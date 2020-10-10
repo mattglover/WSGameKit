@@ -2,13 +2,13 @@ import Foundation
 
 public typealias WSGameId = String
 
-public protocol WSGameKitLocalClientDelegate: AnyObject {
-    func handleMessage(_: WSMessage)
+public protocol WSGameKitSendDelegate: AnyObject {
+    func sendMesage(_: WSMessage, toPlayerIds: [String])
 }
 
 public class WSGameKit {
     
-    public weak var localClientDelegate: WSGameKitLocalClientDelegate?
+    public weak var sendDelegate: WSGameKitSendDelegate?
     
     private(set) var games = [String: WSGame]()
     public static let defaultBoardSize = 15
@@ -73,9 +73,9 @@ public class WSGameKit {
         }
     }
     
-    private func sendMessage(_ message: WSMessage, toPlayerIds: [String]) {
-        if let localDelegate = localClientDelegate {
-            localDelegate.handleMessage(message)
+    private func sendMessage(_ message: WSMessage, toPlayerIds playerIds: [String]) {
+        if let sendDelegate = sendDelegate {
+            sendDelegate.sendMesage(message, toPlayerIds: playerIds)
         }
     }
 }
