@@ -22,11 +22,15 @@ public class WSGameKit {
     
     public init() {}
     
-    public func handleFromClientCommand(_ commandString: String) {
+    public func handleFromClientCommandString(_ string: String) {
         
-        guard let data = commandString.data(using: .utf8) else { return }
+        guard let data = string.data(using: .utf8) else { return }
         guard let command = try? jsonDecoder.decode(WSCommand.self, from: data) else { return }
         
+        handleFromClientCommand(command)
+    }
+    
+    public func handleFromClientCommand(_ command: WSCommand) {
         switch command.type {
         case .setup:
             handleSetupCommand(command.command, playerId: command.playerId, gameId: command.gameId)
