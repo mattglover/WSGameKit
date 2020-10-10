@@ -9,12 +9,12 @@ public enum WSCommandType: String, Codable {
 
 public struct WSCommand: Codable {
     
-    let type: WSCommandType
-    let playerId: String
-    let gameId: String?
-    let command: String
+    public let type: WSCommandType
+    public let playerId: String
+    public let gameId: String?
+    public let command: String
     
-    enum CodingKeys: String, CodingKey {
+    public enum CodingKeys: String, CodingKey {
         case type = "t"
         case playerId = "p"
         case gameId = "g"
