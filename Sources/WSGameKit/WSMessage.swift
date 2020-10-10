@@ -21,5 +21,6 @@ public struct WSMessage: Codable {
     enum CodingKeys: String, CodingKey {
         case type = "t"
         case message = "m"
+        case messageCollection = "mc"
     }
 }
