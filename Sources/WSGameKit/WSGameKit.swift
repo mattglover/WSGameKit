@@ -51,6 +51,7 @@ public class WSGameKit {
         case "j":
             if let gameId = gameId {
                 self.joinGame(gameId: gameId, playerId: playerId)
+                sendMessage(WSMessage(type: .currentGameId, message: gameId), toPlayerIds: [playerId])
             }
         default:
             break
