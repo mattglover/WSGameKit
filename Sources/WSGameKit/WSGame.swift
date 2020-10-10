@@ -58,8 +58,8 @@ public class WSGame {
               guestPlayers.filter({$0.playerId == player.playerId}).count == 0 else {
             return
         }
-        gameBoard.add(player)
         guestPlayers.append(player)
+        gameBoard.add(player)
     }
     
     func leaveGame(player: WSPlayer) {
